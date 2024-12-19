@@ -42,7 +42,8 @@ public class Home extends javax.swing.JFrame {
         QLSV = new javax.swing.JLabel();
         HoaDon = new javax.swing.JLabel();
         phong = new javax.swing.JLabel();
-        home = new javax.swing.JLabel();
+        QLTK = new javax.swing.JLabel();
+        ThongKe = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
@@ -120,19 +121,34 @@ public class Home extends javax.swing.JFrame {
         });
         jPanel3.add(phong, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 210, 45));
 
-        home.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        home.setForeground(new java.awt.Color(255, 255, 255));
-        home.setText("QUẢN LÍ TÀI KHOẢN");
-        home.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        home.addMouseListener(new java.awt.event.MouseAdapter() {
+        QLTK.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        QLTK.setForeground(new java.awt.Color(255, 255, 255));
+        QLTK.setText("QUẢN LÍ TÀI KHOẢN");
+        QLTK.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        QLTK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                homeMouseClicked(evt);
+                QLTKMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                homeMousePressed(evt);
+                QLTKMousePressed(evt);
             }
         });
-        jPanel3.add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 210, 45));
+        jPanel3.add(QLTK, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 210, 45));
+
+        ThongKe.setBackground(new java.awt.Color(255, 255, 255));
+        ThongKe.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        ThongKe.setForeground(new java.awt.Color(255, 255, 255));
+        ThongKe.setText("THỐNG KÊ");
+        ThongKe.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        ThongKe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ThongKeMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ThongKeMousePressed(evt);
+            }
+        });
+        jPanel3.add(ThongKe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 210, 45));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 430));
 
@@ -209,7 +225,7 @@ public class Home extends javax.swing.JFrame {
         //MenuName.set
     }//GEN-LAST:event_phongMousePressed
 
-    private void QLSVMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QLSVMousePressed
+    private void ThongKeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ThongKeMousePressed
         // TODO add your handling code here:
         //QLSV.setBackground(clickedColor);
         //phong.setBackground(DefaultColor);
@@ -217,9 +233,9 @@ public class Home extends javax.swing.JFrame {
         //home.setBackground(DefaultColor);
 
         this.setVisible(false);
-        QLSV qlsv = new QLSV();
-        qlsv.setVisible(true);
-    }//GEN-LAST:event_QLSVMousePressed
+        ThongKe t = new ThongKe();
+        t.setVisible(true);
+    }//GEN-LAST:event_ThongKeMousePressed
 
     private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
         // TODO add your handling code here:
@@ -227,34 +243,23 @@ public class Home extends javax.swing.JFrame {
 
     private void HoaDonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoaDonMousePressed
         // TODO add your handling code here:
-        QLSV.setBackground(DefaultColor);
+        ThongKe.setBackground(DefaultColor);
         phong.setBackground(DefaultColor);
         HoaDon.setBackground(clickedColor);
-        home.setBackground(DefaultColor);
+        //home.setBackground(DefaultColor);
 
     }//GEN-LAST:event_HoaDonMousePressed
 
-    private void QLSVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QLSVMouseClicked
+    private void ThongKeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ThongKeMouseClicked
         // TODO add your handling code here:
-        QLSV qlsvp = new QLSV();
-        jDesktopPane1.removeAll();
-        jDesktopPane1.add(qlsvp).setVisible(true);
+        ThongKe t = new ThongKe();
+        //jDesktopPane1.removeAll();
+        //jDesktopPane1.add(qlsvp).setVisible(true);
 
         //QLSV qlsv = new QLSV();
-        //this.setVisible(false);
-        //qlsv.setVisible(true);
-    }//GEN-LAST:event_QLSVMouseClicked
-
-    private void homeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMousePressed
-        // TODO add your handling code here:
-//        QLSV.setBackground(DefaultColor);
-//        phong.setBackground(DefaultColor);
-//        HoaDon.setBackground(DefaultColor);
-//        home.setBackground(clickedColor);
-        jDesktopPane1.setVisible(true);
-        QLSV qlsvp = new QLSV();
-        jDesktopPane1.add(qlsvp).setVisible(false);
-    }//GEN-LAST:event_homeMousePressed
+        this.setVisible(false);
+        t.setVisible(true);
+    }//GEN-LAST:event_ThongKeMouseClicked
 
     private void HoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoaDonMouseClicked
         // TODO add your handling code here:
@@ -276,12 +281,24 @@ public class Home extends javax.swing.JFrame {
         p.setVisible(true);
     }//GEN-LAST:event_phongMouseClicked
 
-    private void homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseClicked
+    private void QLTKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QLTKMouseClicked
         // TODO add your handling code here:
+    }//GEN-LAST:event_QLTKMouseClicked
+
+    private void QLTKMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QLTKMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_QLTKMousePressed
+
+    private void QLSVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QLSVMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_QLSVMouseClicked
+
+    private void QLSVMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QLSVMousePressed
+        // TODO add your handling code here:
+        QLSV sv = new QLSV();
         this.setVisible(false);
-        QLTK tk = new QLTK();
-        tk.setVisible(true);
-    }//GEN-LAST:event_homeMouseClicked
+        sv.setVisible(true);
+    }//GEN-LAST:event_QLSVMousePressed
 
     /**
      * @param args the command line arguments
@@ -321,7 +338,8 @@ public class Home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel HoaDon;
     private javax.swing.JLabel QLSV;
-    private javax.swing.JLabel home;
+    private javax.swing.JLabel QLTK;
+    private javax.swing.JLabel ThongKe;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

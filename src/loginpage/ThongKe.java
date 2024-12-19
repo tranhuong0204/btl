@@ -27,7 +27,7 @@ public class ThongKe extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         initTable();
-        loadDataToTable();
+        loadData();
     }
 
     public void initTable() {
@@ -36,9 +36,9 @@ public class ThongKe extends javax.swing.JFrame {
         tbPhong.setModel(tblModel);
     }
 
-    public void loadDataToTable() {
-        lbCon.setText("số phòng còn chỗ:");
-        lbHet.setText("số phòng hết chỗ:");
+    public void loadData() {
+        lbCon.setText(" Số phòng còn chỗ:");
+        lbHet.setText(" Số phòng hết chỗ:");
 
         String con = "còn chỗ";
 
@@ -208,11 +208,13 @@ public class ThongKe extends javax.swing.JFrame {
 
         String con = "còn chỗ";
         String het = "hết chỗ";
-        int a = dao.demSoPhongTheoTinhTrang(con);
-        int b = dao.demSoPhongTheoTinhTrang(het);
+        float a = dao.demSoPhongTheoTinhTrang(con);
+        float b = dao.demSoPhongTheoTinhTrang(het);
+        int c =(int) (1.0f*a/list.size()*100);
+        int d =(int) (1.0f*b/list.size()*100);
 
-        lbCon.setText(" Số phòng còn chỗ: " + (list.size() - a));
-        lbHet.setText(" Số phòng còn chỗ: " + (list.size() - b));
+        lbCon.setText(" Số phòng còn chỗ: " + (list.size() - b) +" ("+ c + "%)");
+        lbHet.setText(" Số phòng hết chỗ: " + (list.size() - a) +" ("+ d + "%)");
 
     }//GEN-LAST:event_btThongKeActionPerformed
 
