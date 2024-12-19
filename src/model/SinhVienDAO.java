@@ -13,10 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import model.SinhVien;
 
-/**
- *
- * @author huong
- */
 public class SinhVienDAO {
 
     public int countSinhVienInPhongKTX(String maPhong) {
@@ -117,10 +113,8 @@ public class SinhVienDAO {
     }
     
     public void xoaThanhVien(int i, List<SinhVien> dssv ) {
-         //dssv = this.docFile();
         dssv.remove(i);
-        //this.luuFile(dssv, false);
-        //this.soSVHienTai = this.dsSV.size();
+
     }
 
     public SinhVien getSVbyMaSV(String masv, List<SinhVien> list) {

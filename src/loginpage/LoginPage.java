@@ -15,12 +15,9 @@ public class LoginPage {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        //Login lg = new Login();
-        //lg.show();
-        Home h = new Home();
-        h.show();
-        //QLSV qlsv = new QLSV();
-        //qlsv.show();
+        Login lg = new Login();
+        lg.show();
+
     }
     
 }

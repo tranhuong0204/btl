@@ -26,12 +26,22 @@ public class NewPhongKTXPage extends javax.swing.JFrame {
     private DefaultTableModel model;
     private SinhVienDAO svdao;
     private NewPhongKTXPage p;
-
+    int soSV;
+    String tinhTrang;
     /**
      * Creates new form NewPhongKTXPage
      */
-    public void layMaSV() {
-        String maSV = txtMAPhong.getText();
+    public String layMaPhong() {
+        String maPhong = txtMAPhong.getText();
+        return maPhong;
+    }
+    
+    public int laySoSVHT() {
+         return soSV;
+    }
+    
+    public String layTinhTrang() {
+        return tinhTrang;
     }
 
 //    public void laySoSVHT(){
@@ -75,7 +85,10 @@ public class NewPhongKTXPage extends javax.swing.JFrame {
                     lbLoaiPhong.setText("Loại phòng: " + p1.getLoaiPhong());
                     lbSoSVMax.setText("Số sinh viên tối đa: " + p1.getSoSVToiDa());
                     lbSoSV.setText("Số sinh viên hiện tại: " + p1.getSoSVHienTai());
+                    soSV = p1.getSoSVHienTai();
                     lbTinhTrang.setText("Tình trạng: " + p1.getTinhTrang());
+                    tinhTrang = p1.getTinhTrang();
+                    //System.out.println("ma phong" + layMaPhong());
                     lbGiaPhong.setText("Giá phòng/người: " + p1.getGiaPhong());
                     break;
                 } else {
@@ -188,7 +201,6 @@ public class NewPhongKTXPage extends javax.swing.JFrame {
         lbGiaPhong.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbGiaPhong.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btXoa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btXoa.setText("Xóa");
         btXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,13 +208,15 @@ public class NewPhongKTXPage extends javax.swing.JFrame {
             }
         });
 
-        btCapNhat.setText("Cập nhật");
+        btCapNhat.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btCapNhat.setText("Cập nhật trang");
         btCapNhat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCapNhatActionPerformed(evt);
             }
         });
 
+        btThemSV.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btThemSV.setText("Thêm sinh viên");
         btThemSV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,7 +254,7 @@ public class NewPhongKTXPage extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbLoaiPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbMaPhong, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbMaPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lbSoSV, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
@@ -269,18 +283,20 @@ public class NewPhongKTXPage extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addComponent(lbSoSV, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lbSoSVMax, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lbGiaPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
                         .addComponent(lbMaPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lbLoaiPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lbTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -288,8 +304,8 @@ public class NewPhongKTXPage extends javax.swing.JFrame {
                         .addComponent(btThemSV, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btSuaPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 710, 410));
@@ -338,7 +354,7 @@ public class NewPhongKTXPage extends javax.swing.JFrame {
 
     private void btThemSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThemSVActionPerformed
         // TODO add your handling code here:
-        String maPhong = txtMAPhong.getText();
+        String maPhong = txtMAPhong.getText(); //************************************************
         //this.setVisible(false);
         ThemSV sv = new ThemSV();
         sv.setText(maPhong);
@@ -389,9 +405,12 @@ public class NewPhongKTXPage extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMAPhongActionPerformed
 
     private void btSuaPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSuaPhongActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        SuaPhongPage p = new SuaPhongPage();
+ 
+
+        String maPhong = txtMAPhong.getText(); //************************************************
+        //this.setVisible(false);
+        SuaTTPhong p = new SuaTTPhong();
+        p.setText(maPhong);
         p.setVisible(true);
     }//GEN-LAST:event_btSuaPhongActionPerformed
 

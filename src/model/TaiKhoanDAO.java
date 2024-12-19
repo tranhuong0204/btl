@@ -13,14 +13,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author huong
- */
+
 public class TaiKhoanDAO {
-    public void luuFile(List<TaiKhoan> list, boolean t) {
-        //String txt1 = "SV4, Vũ Đình Duy, KTPM, 30/01/2003, Nam";
-        try {
+    public void luuFile(List<TaiKhoan> list, boolean t) {        try {
             FileWriter fw = new FileWriter("TAiKhoanData.txt", t);
             BufferedWriter bw = new BufferedWriter(fw);
             for (TaiKhoan tk : list) {
@@ -57,17 +52,7 @@ public class TaiKhoanDAO {
     }
     
     public boolean suaTaiKhoan(String tenTK, List<TaiKhoan> list, TaiKhoan newTK){
-        //TaiKhoan tk = new TaiKhoan();
-        //TaiKhoanDAO dao = new TaiKhoanDAO
-        //List<TaiKhoan> list = this.docFile();
-        
-//        for(TaiKhoan tk : list){
-//            if(tk.getTenTaiKhoan().equalsIgnoreCase(tenTK));{
-//                list.set(list.indexOf(tk), newTK);
-//                return true;
-//            }
-//        }
-//        return false;
+ 
         for (int i = 0; i < list.size(); i++) {
         TaiKhoan tk = list.get(i);
         if (tk.getTenTaiKhoan().equalsIgnoreCase(tenTK)) {
@@ -91,17 +76,7 @@ public class TaiKhoanDAO {
     }
     
     public boolean xoaTaiKhoan(String tenTK, List<TaiKhoan> list){
-        //TaiKhoan tk = new TaiKhoan();
-        //TaiKhoanDAO dao = new TaiKhoanDAO
-        //List<TaiKhoan> list = this.docFile();
-        
-//        for(TaiKhoan tk : list){
-//            if(tk.getTenTaiKhoan().equalsIgnoreCase(tenTK));{
-//                list.set(list.indexOf(tk), newTK);
-//                return true;
-//            }
-//        }
-//        return false;
+     
         for (int i = 0; i < list.size(); i++) {
         TaiKhoan tk = list.get(i);
         if (tk.getTenTaiKhoan().equalsIgnoreCase(tenTK)) {

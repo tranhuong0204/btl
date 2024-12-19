@@ -9,8 +9,12 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Utils.DataValidator;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 //import Utils.MessageDialog;
 import model.SinhVienDAO;
 import model.SinhVien;
@@ -57,6 +61,21 @@ public class QLSV extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e.getMessage(), "lỗi", JOptionPane.ERROR_MESSAGE);
             //MessageDialog.showErrorMessage(this, e.getMessage(), "Lỗi");
 
+        }
+    }
+
+    public static boolean checkNgayThang(String target) {
+        String dateFormatRegex = "^\\d{2}/\\d{2}/\\d{4}$";
+        Pattern pattern = Pattern.compile(dateFormatRegex);
+        Matcher matcher = pattern.matcher(target.trim());
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat.setLenient(false);
+        try {
+            dateFormat.parse(target);
+            return true && matcher.matches();
+        } catch (ParseException e) {
+            return false;
         }
     }
 
@@ -270,9 +289,9 @@ public class QLSV extends javax.swing.JFrame {
                         .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
                         .addGap(56, 56, 56))
                     .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtMaSV)
                             .addComponent(txtHoTen, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
@@ -285,7 +304,6 @@ public class QLSV extends javax.swing.JFrame {
                             .addComponent(txtSDT))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNgayDK, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(63, 63, 63)
                         .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -506,7 +524,7 @@ public class QLSV extends javax.swing.JFrame {
             dao.luuFile(list, true);
             JOptionPane.showMessageDialog(this, "Sinh viên đã được lưu", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             loadDataToTable();
-
+        
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -524,7 +542,7 @@ public class QLSV extends javax.swing.JFrame {
         DataValidator.validateEmpty(txtSDT, sb, "Sdt không được để trống");
         DataValidator.validateEmpty(txtNgayDK, sb, "ngày đăng kí không được để trống");
         DataValidator.validateEmpty(txtNgayHH, sb, "ngày hết hạn không được để trống");
-        
+
         if (sb.length() > 0) {
             JOptionPane.showMessageDialog(this, sb.toString(), "Lỗi", JOptionPane.ERROR_MESSAGE);
             return;

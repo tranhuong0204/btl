@@ -100,7 +100,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,7 +128,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 330, 330));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 340, 330));
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\huong\\OneDrive - MSFT\\hairstyle\\ảnh nền.jpg")); // NOI18N
         jLabel2.setText("jLabel2");
@@ -165,10 +165,9 @@ public class Login extends javax.swing.JFrame {
                     this.setVisible(false);
                     Home h = new Home();
                     h.setVisible(true);
-                    //return sv;  // Trả về sinh viên tìm được
                 }
             }
-            //}
+            
     }//GEN-LAST:event_btSigninActionPerformed
     }
     /**
