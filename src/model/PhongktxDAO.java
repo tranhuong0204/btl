@@ -51,5 +51,20 @@ public class PhongktxDAO {
         }
     }
     
+    public int demSoPhongTheoTinhTrang(String tt){
+        int d=0;
+        NewPhongKTX p = new NewPhongKTX();
+        //NewPhongKTX p = new NewPhongKTX();
+        List<NewPhongKTX> listPhongKTX = p.docPhongKTXFile("PhongKTX.txt");
+        
+        List<NewPhongKTX> dsSV = p.docPhongKTXFile(tt);
+        // Tìm phòng và cập nhật số lượng sinh viên hiện tại
+        for (NewPhongKTX p1 : listPhongKTX) {
+            if (p1.getTinhTrang().equalsIgnoreCase(tt)) {
+                d++;
+            }
+        }
+        return d;
+    }
 
 }

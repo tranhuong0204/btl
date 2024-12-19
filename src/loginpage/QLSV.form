@@ -204,7 +204,7 @@
                       <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
                       <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="jLabel6" pref="56" max="32767" attributes="0"/>
+                          <Component id="jLabel6" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jLabel10" alignment="1" max="32767" attributes="0"/>
@@ -244,7 +244,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   <Component id="btNhapMoi" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="57" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="btnLuu" min="-2" pref="91" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                   <Component id="btSua" min="-2" pref="85" max="-2" attributes="0"/>

@@ -1,1 +1,3 @@
-001,phòng loại 2,6,3,Còn chỗ,500000
+001,phòng loại 2,6,6,Hết chỗ,500000
+002,phòng loại 1,4,0,Còn chỗ,800000
+003,phòng loại 3,6,0,Còn chỗ,300000

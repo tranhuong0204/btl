@@ -18,7 +18,7 @@ public class Main {
     //PhongktxDAO p = new PhongktxDAO();
     //p.lu
     public static void main(String[] args) {
-        NewPhongKTX phongKTX1 = new NewPhongKTX("001", "phòng loại 2", 6, 800000);
+        NewPhongKTX phongKTX1 = new NewPhongKTX("003", "phòng loại 3", 6, 300000);
         List<NewPhongKTX> list = new ArrayList<>();
         list.add(phongKTX1);
         phongKTX1.ghiDoiTuongPhongVaoFile(list, true);

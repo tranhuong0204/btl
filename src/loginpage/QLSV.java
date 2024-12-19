@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 //import Utils.MessageDialog;
 import model.SinhVienDAO;
 import model.SinhVien;
+import Utils.CheckDate;
 
 /**
  *
@@ -286,7 +287,7 @@ public class QLSV extends javax.swing.JFrame {
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(56, 56, 56))
                     .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -317,7 +318,7 @@ public class QLSV extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(btNhapMoi)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
                 .addComponent(btSua, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -488,6 +489,8 @@ public class QLSV extends javax.swing.JFrame {
                     txtNgayHH.setText(tv.getNgayHetHan());
                     btnNam.setSelected(tv.getGioiTinh().equalsIgnoreCase("Nam") ? true : false);
                     btnNu.setSelected(tv.getGioiTinh().equalsIgnoreCase("Nữ") ? true : false);
+                    txtNgayDK.setText(tv.getNgayDangKy());
+                    txtNgayHH.setText(tv.getNgayHetHan());
                     //txtSDT.setText(tv.getSdt());
 
                 }
@@ -512,23 +515,36 @@ public class QLSV extends javax.swing.JFrame {
         DataValidator.validateEmpty(txtNgayDK, sb, "ngày đăng kí không được để trống");
         DataValidator.validateEmpty(txtNgayHH, sb, "ngày hết hạn không được để trống");
 
+        //CheckDate
+        if (!CheckDate.checkDateFormat(txtNgayDK.getText()) || !CheckDate.checkDateFormat(txtNgayDK.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "nhập sai định dạng ngày tháng. Vui lòng nhập theo định dạng xx/yy/zzzz.");
+            txtNgayDK.setText("");
+            txtNgayHH.setText("");
+            return;
+        } else if (!CheckDate.isFuture(txtNgayDK.getText(), txtNgayHH.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "Lỗi ngày hết hạn trước ngày bắt đầu.");
+            txtNgayDK.setText("");
+            txtNgayHH.setText("");
+            return;
+        } 
         if (sb.length() > 0) {
             JOptionPane.showMessageDialog(this, "không để trống thông tin", "Lỗi", JOptionPane.ERROR_MESSAGE);
             return;
-        }
-        try {
-            SinhVienDAO dao = new SinhVienDAO();
-            List<SinhVien> list = new ArrayList<>();
-            SinhVien sv = new SinhVien(txtMaSV.getText(), txtHoTen.getText(), txtMaPhong.getText(), txtQueQuan.getText(), btnNam.isSelected() ? "Nam" : "Nữ", txtSDT.getText(), txtNgayDK.getText(), txtNgayHH.getText());
-            list.add(sv);
-            dao.luuFile(list, true);
-            JOptionPane.showMessageDialog(this, "Sinh viên đã được lưu", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-            loadDataToTable();
-        
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                SinhVienDAO dao = new SinhVienDAO();
+                List<SinhVien> list = new ArrayList<>();
+                SinhVien sv = new SinhVien(txtMaSV.getText(), txtHoTen.getText(), txtMaPhong.getText(), txtQueQuan.getText(), btnNam.isSelected() ? "Nam" : "Nữ", txtSDT.getText(), txtNgayDK.getText(), txtNgayHH.getText());
+                list.add(sv);
+                dao.luuFile(list, true);
+                JOptionPane.showMessageDialog(this, "Sinh viên đã được lưu", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                loadDataToTable();
 
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+
+            }
         }
     }//GEN-LAST:event_btnLuuActionPerformed
 
