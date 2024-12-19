@@ -53,7 +53,7 @@ public class Home extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(54, 33, 89));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\huong\\OneDrive - MSFT\\Pictures\\ảnh\\logonho.jpg")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logonho.jpg"))); // NOI18N
         jLabel5.setText("jLabel5");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
@@ -90,7 +90,7 @@ public class Home extends javax.swing.JFrame {
                 QLSVMousePressed(evt);
             }
         });
-        jPanel3.add(QLSV, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 199, 45));
+        jPanel3.add(QLSV, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 45));
 
         HoaDon.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         HoaDon.setForeground(new java.awt.Color(255, 255, 255));
@@ -104,7 +104,7 @@ public class Home extends javax.swing.JFrame {
                 HoaDonMousePressed(evt);
             }
         });
-        jPanel3.add(HoaDon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 199, 45));
+        jPanel3.add(HoaDon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 210, 45));
 
         phong.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         phong.setForeground(new java.awt.Color(255, 255, 255));
@@ -118,7 +118,7 @@ public class Home extends javax.swing.JFrame {
                 phongMousePressed(evt);
             }
         });
-        jPanel3.add(phong, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 199, 45));
+        jPanel3.add(phong, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 210, 45));
 
         home.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         home.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,9 +132,9 @@ public class Home extends javax.swing.JFrame {
                 homeMousePressed(evt);
             }
         });
-        jPanel3.add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 199, 45));
+        jPanel3.add(home, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 210, 45));
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 430));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 430));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -144,9 +144,11 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(6, 6, 6)))
                 .addGap(14, 14, 14))
         );
         jPanel1Layout.setVerticalGroup(
@@ -161,7 +163,7 @@ public class Home extends javax.swing.JFrame {
                 .addGap(714, 714, 714))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 700));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 700));
 
         jLabel4.setBackground(new java.awt.Color(204, 204, 204));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
@@ -170,7 +172,7 @@ public class Home extends javax.swing.JFrame {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 240, 60));
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\huong\\OneDrive - MSFT\\hairstyle\\ảnh nền.jpg")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ảnh nền.jpg"))); // NOI18N
         jLabel3.setText("ưe");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-160, -70, 990, 760));
 
