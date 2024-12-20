@@ -4,17 +4,15 @@
  */
 package Main;
 
-//import loginpage.Home;
 import loginpage.Login;
-//import GUI.Login;
-
+        
+        
 /**
  *
  * @author huong
  */
 public class Main {
-     public static void main(String[] args) {
-       // new Login().setVisible(true);
-
+    public static void main(String[] args) {
+        new Login().setVisible(true);
     }
 }
