@@ -16,6 +16,7 @@ import model.SinhVien;
 import model.SinhVienDAO;
 import model.SinhVienDAO;
 import model.PhongktxDAO;
+import model.PhongktxDAO;
 
 /**
  *
@@ -28,6 +29,7 @@ public class NewPhongKTXPage extends javax.swing.JFrame {
     private NewPhongKTXPage p;
     int soSV;
     String tinhTrang;
+
     /**
      * Creates new form NewPhongKTXPage
      */
@@ -35,11 +37,11 @@ public class NewPhongKTXPage extends javax.swing.JFrame {
         String maPhong = txtMAPhong.getText();
         return maPhong;
     }
-    
+
     public int laySoSVHT() {
-         return soSV;
+        return soSV;
     }
-    
+
     public String layTinhTrang() {
         return tinhTrang;
     }
@@ -59,7 +61,7 @@ public class NewPhongKTXPage extends javax.swing.JFrame {
     protected void reload() {
         try {
             SinhVienDAO dao = new SinhVienDAO();
-            List<SinhVien> list = dao.docFile(); // Đọc danh sách sinh viên từ file
+            List<SinhVien> list = dao.docFile(); 
             //List<SinhVien> listSVMasv = new ArrayList<>();
             model.setRowCount(0);
 
@@ -78,7 +80,6 @@ public class NewPhongKTXPage extends javax.swing.JFrame {
             NewPhongKTX p = new NewPhongKTX();
             List<NewPhongKTX> listPhongKTX = p.docPhongKTXFile("PhongKTX.txt");
             for (NewPhongKTX p1 : listPhongKTX) {
-                //JOptionPane.showMessageDialog(rootPane, "hãy chọn dòng có sv muốn xóa");
 
                 if (p1.getMaPhong().equalsIgnoreCase(txtMAPhong.getText())) {
                     lbMaPhong.setText("Mã phòng: " + p1.getMaPhong());
@@ -93,12 +94,11 @@ public class NewPhongKTXPage extends javax.swing.JFrame {
                     break;
                 } else {
                     lbMaPhong.setText("Mã Phòng: ");
-                    lbLoaiPhong.setText("Loại phòng: " );
-                    lbSoSVMax.setText("Số sinh viên tối đa: " );
-                    lbSoSV.setText("Số sinh viên hiện tại: " );
-                    lbTinhTrang.setText("Tình trạng: " );
-                    lbGiaPhong.setText("Giá phòng/người: " );
-
+                    lbLoaiPhong.setText("Loại phòng: ");
+                    lbSoSVMax.setText("Số sinh viên tối đa: ");
+                    lbSoSV.setText("Số sinh viên hiện tại: ");
+                    lbTinhTrang.setText("Tình trạng: ");
+                    lbGiaPhong.setText("Giá phòng/người: ");
                 }
 
             }
@@ -354,16 +354,25 @@ public class NewPhongKTXPage extends javax.swing.JFrame {
 
     private void btThemSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThemSVActionPerformed
         // TODO add your handling code here:
-        String maPhong = txtMAPhong.getText(); //************************************************
-        //this.setVisible(false);
-        ThemSV sv = new ThemSV();
-        sv.setText(maPhong);
-        sv.setVisible(true);
+        PhongktxDAO dao = new PhongktxDAO();
+        NewPhongKTX p = new NewPhongKTX();
+        List<NewPhongKTX> list = p.docPhongKTXFile("PhongKTX.txt");
+
+        if (dao.checkTinhTrang(txtMAPhong.getText(), list)) {
+            JOptionPane.showMessageDialog(this, "Phòng đã hết chỗ!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String maPhong = txtMAPhong.getText(); //************************************************
+            //this.setVisible(false);
+            ThemSV sv = new ThemSV();
+            sv.setText(maPhong);
+            sv.setVisible(true);
+        }
     }//GEN-LAST:event_btThemSVActionPerformed
 
     private void btTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTimActionPerformed
         // TODO add your handling code here:
         reload();
+        //if()
     }//GEN-LAST:event_btTimActionPerformed
 
     private void btQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btQuayLaiActionPerformed
@@ -405,7 +414,6 @@ public class NewPhongKTXPage extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMAPhongActionPerformed
 
     private void btSuaPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSuaPhongActionPerformed
- 
 
         String maPhong = txtMAPhong.getText(); //************************************************
         //this.setVisible(false);

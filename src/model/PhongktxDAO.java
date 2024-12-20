@@ -22,15 +22,14 @@ import java.util.List;
  */
 public class PhongktxDAO {
 
- 
-    public void capNhatSoLuongSV( String maPhong) {
+    public void capNhatSoLuongSV(String maPhong) {
         SinhVienDAO sv = new SinhVienDAO();
         NewPhongKTX p = new NewPhongKTX();
         List<NewPhongKTX> listPhongKTX = p.docPhongKTXFile("PhongKTX.txt");
-        
+
         List<SinhVien> dsSV = sv.docFile();
         // Tìm phòng và cập nhật số lượng sinh viên hiện tại
-         int d=0;
+        int d = 0;
         for (SinhVien sv1 : dsSV) {
             if (sv1.getMaPhong().equalsIgnoreCase(maPhong)) {
                 d++;
@@ -42,21 +41,21 @@ public class PhongktxDAO {
         // Ghi lại danh sách phòng KTX vào file
         try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("PhongKTX.txt"), "UTF-8"))) {
             for (NewPhongKTX phong : listPhongKTX) {
-                bw.write(phong.getMaPhong() + "," + phong.getLoaiPhong() + "," + phong.getSoSVToiDa() + "," +
-                         phong.getSoSVHienTai() + "," + phong.getTinhTrang());
+                bw.write(phong.getMaPhong() + "," + phong.getLoaiPhong() + "," + phong.getSoSVToiDa() + ","
+                        + phong.getSoSVHienTai() + "," + phong.getTinhTrang());
                 bw.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
-    public int demSoPhongTheoTinhTrang(String tt){
-        int d=0;
+
+    public int demSoPhongTheoTinhTrang(String tt) {
+        int d = 0;
         NewPhongKTX p = new NewPhongKTX();
         //NewPhongKTX p = new NewPhongKTX();
         List<NewPhongKTX> listPhongKTX = p.docPhongKTXFile("PhongKTX.txt");
-        
+
         List<NewPhongKTX> dsSV = p.docPhongKTXFile(tt);
         // Tìm phòng và cập nhật số lượng sinh viên hiện tại
         for (NewPhongKTX p1 : listPhongKTX) {
@@ -67,4 +66,21 @@ public class PhongktxDAO {
         return d;
     }
 
+    public boolean checkMaP(String maP, List<NewPhongKTX> list) {
+        for (NewPhongKTX p1 : list) {
+            if (p1.getMaPhong().equals(maP)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkTinhTrang(String maP, List<NewPhongKTX> list) {
+        for (NewPhongKTX p1 : list) {
+            if (p1.getMaPhong().equals(maP) && p1.getTinhTrang().equalsIgnoreCase("hết chỗ")) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

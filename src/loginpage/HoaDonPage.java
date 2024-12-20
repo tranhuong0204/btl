@@ -16,6 +16,8 @@ import model.HoaDon;
 import model.HoaDonDAO;
 import model.SinhVien;
 import model.SinhVienDAO;
+import model.NewPhongKTX;
+import model.PhongktxDAO;
 //import model.NewPhongKTX
 
 /**
@@ -114,6 +116,7 @@ public class HoaDonPage extends javax.swing.JFrame {
         btXoa = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbHD = new javax.swing.JTable();
+        btNhapMoi = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtTim = new javax.swing.JTextField();
@@ -258,6 +261,14 @@ public class HoaDonPage extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbHD);
 
+        btNhapMoi.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btNhapMoi.setText("Nhập mới");
+        btNhapMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNhapMoiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -277,20 +288,20 @@ public class HoaDonPage extends javax.swing.JFrame {
                             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtTong, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(351, 351, 351))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtMaPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtTienPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtTienWifi, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtTienVS, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtMaPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTienPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTienWifi, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTienVS, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTong, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(351, 351, 351))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,10 +327,12 @@ public class HoaDonPage extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 777, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(184, 184, 184)
-                                .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(78, 78, 78)
-                                .addComponent(btSua, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(128, 128, 128)
+                                .addComponent(btNhapMoi)
+                                .addGap(239, 239, 239)
+                                .addComponent(btSua, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(70, 70, 70)
+                                .addComponent(btXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -368,7 +381,8 @@ public class HoaDonPage extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLuu)
                     .addComponent(btSua)
-                    .addComponent(btXoa))
+                    .addComponent(btXoa)
+                    .addComponent(btNhapMoi))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(63, Short.MAX_VALUE))
@@ -480,7 +494,7 @@ public class HoaDonPage extends javax.swing.JFrame {
             int e = Integer.parseInt(txtTienVS.getText());
             int tong = a + b + c + d + e;
             if (soLuong == 0) {
-                JOptionPane.showMessageDialog(this, "không tìm thấy mã phòng phù hợp", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "không tìm thấy mã phòng phù hợp hoặc phòng chưa có sinh viên.", "Lỗi", JOptionPane.ERROR_MESSAGE);
             } else {
                 txtTong.setText(String.valueOf(tong));
             }
@@ -527,11 +541,23 @@ public class HoaDonPage extends javax.swing.JFrame {
         try {
             HoaDonDAO dao = new HoaDonDAO();
             List<HoaDon> list = new ArrayList<>();
-            HoaDon hd = new HoaDon(txtMaHD.getText(), txtMaPhong.getText(), Integer.parseInt(txtTienPhong.getText()), Integer.parseInt(txtSoDien.getText()), Integer.parseInt(txtDonGiaDien.getText()), Integer.parseInt(txtSoNuoc.getText()), Integer.parseInt(txtDonGiaNuoc.getText()), Integer.parseInt(txtTienWifi.getText()), Integer.parseInt(txtTienVS.getText()), Integer.parseInt(txtTong.getText()));
-            list.add(hd);
-            dao.luuFile(list, true);
-            JOptionPane.showMessageDialog(this, "Hóa đơn đã được lưu", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-            loadDataToTable();
+            List<HoaDon> listCheck = dao.docFile();
+            PhongktxDAO daoP = new PhongktxDAO();
+            NewPhongKTX p = new NewPhongKTX();
+            List<NewPhongKTX> listP = p.docPhongKTXFile("PhongKTX.txt");
+
+            if (dao.checkMaHD(txtMaHD.getText(), listCheck)) {
+                JOptionPane.showMessageDialog(this, "Mã hóa đơn đã tồn tại. Vui lòng nhập mhd khác!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            } else if (!daoP.checkMaP(txtMaPhong.getText(), listP)) {
+                JOptionPane.showMessageDialog(this, "Mã mã phòng không tồn tại. Vui lòng nhập đúng mã phòng!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            } else {
+                HoaDon hd = new HoaDon(txtMaHD.getText(), txtMaPhong.getText(), Integer.parseInt(txtTienPhong.getText()), Integer.parseInt(txtSoDien.getText()), Integer.parseInt(txtDonGiaDien.getText()), Integer.parseInt(txtSoNuoc.getText()), Integer.parseInt(txtDonGiaNuoc.getText()), Integer.parseInt(txtTienWifi.getText()), Integer.parseInt(txtTienVS.getText()), Integer.parseInt(txtTong.getText()));
+                list.add(hd);
+                dao.luuFile(list, true);
+                JOptionPane.showMessageDialog(this, "Hóa đơn đã được lưu", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                loadDataToTable();
+                txtTong.setText("");
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -629,14 +655,14 @@ public class HoaDonPage extends javax.swing.JFrame {
                 HoaDon hd = dao.timHDTheoMaHD(id, list);
                 if (hd != null) {
                     txtMaHD.setText(hd.getMaHD());
-                txtMaPhong.setText(hd.getMaPhong());
-                txtTienPhong.setText(String.valueOf(hd.getTienPhong()));
-                txtSoDien.setText(String.valueOf(hd.getSoDien()));
-                txtDonGiaDien.setText(String.valueOf(hd.getDonGiaDien()));
-                txtSoNuoc.setText(String.valueOf(hd.getSoNuoc()));
-                txtDonGiaNuoc.setText(String.valueOf(hd.getDoGiaNuoc()));
-                txtTienWifi.setText(String.valueOf(hd.getTienWifi()));
-                txtTienVS.setText(String.valueOf(hd.getTienVS()));
+                    txtMaPhong.setText(hd.getMaPhong());
+                    txtTienPhong.setText(String.valueOf(hd.getTienPhong()));
+                    txtSoDien.setText(String.valueOf(hd.getSoDien()));
+                    txtDonGiaDien.setText(String.valueOf(hd.getDonGiaDien()));
+                    txtSoNuoc.setText(String.valueOf(hd.getSoNuoc()));
+                    txtDonGiaNuoc.setText(String.valueOf(hd.getDoGiaNuoc()));
+                    txtTienWifi.setText(String.valueOf(hd.getTienWifi()));
+                    txtTienVS.setText(String.valueOf(hd.getTienVS()));
 
                 }
             }
@@ -645,9 +671,22 @@ public class HoaDonPage extends javax.swing.JFrame {
             e.printStackTrace();
             //MessageDialog.showErrorMessage(this, e.getMessage(), "Lỗi");
             JOptionPane.showMessageDialog(this, e.getMessage(), "lỗi", JOptionPane.ERROR_MESSAGE);
-
+        }
     }//GEN-LAST:event_tbHDMouseClicked
-    }
+
+    private void btNhapMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNhapMoiActionPerformed
+        // TODO add your handling code here:
+        txtMaHD.setText("");
+        txtMaPhong.setText("");
+        txtTienPhong.setText("");
+        txtSoDien.setText("");
+        txtDonGiaDien.setText("");
+        txtSoNuoc.setText("");
+        txtDonGiaNuoc.setText("");
+        txtTienWifi.setText("");
+        txtTienVS.setText("");
+    }//GEN-LAST:event_btNhapMoiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -684,6 +723,7 @@ public class HoaDonPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btNhapMoi;
     private javax.swing.JButton btSua;
     private javax.swing.JButton btTim;
     private javax.swing.JButton btTong;

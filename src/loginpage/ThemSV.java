@@ -11,6 +11,7 @@ import model.SinhVienDAO;
 import model.SinhVien;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  *
  * @author huong
@@ -26,8 +27,9 @@ public class ThemSV extends javax.swing.JFrame {
     }
 
     public void setText(String maPhong) {
-        txtMaPhong.setText( maPhong);
+        txtMaPhong.setText(maPhong);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -286,7 +288,7 @@ public class ThemSV extends javax.swing.JFrame {
         DataValidator.validateEmpty(txtSDT, sb, "Sdt không được để trống");
         DataValidator.validateEmpty(txtNgayDK, sb, "ngày đăng kí không được để trống");
         DataValidator.validateEmpty(txtNgayHH, sb, "ngày hết hạn không được để trống");
-        
+
         if (!CheckDate.checkDateFormat(txtNgayDK.getText()) || !CheckDate.checkDateFormat(txtNgayDK.getText())) {
             JOptionPane.showMessageDialog(rootPane, "nhập sai định dạng ngày tháng. Vui lòng nhập theo định dạng xx/yy/zzzz.");
             txtNgayDK.setText("");
@@ -297,8 +299,8 @@ public class ThemSV extends javax.swing.JFrame {
             txtNgayDK.setText("");
             txtNgayHH.setText("");
             return;
-        } 
-        
+        }
+
         if (sb.length() > 0) {
             JOptionPane.showMessageDialog(this, "các thông tin không được để trống!", "Lỗi", JOptionPane.ERROR_MESSAGE);
             return;
@@ -306,18 +308,23 @@ public class ThemSV extends javax.swing.JFrame {
         try {
             SinhVienDAO dao = new SinhVienDAO();
             List<SinhVien> list = new ArrayList<>();
-            SinhVien sv = new SinhVien(txtMaSV.getText(), txtHoTen.getText(), txtMaPhong.getText() , txtQueQuan.getText(), btnNam.isSelected() ? "Nam" : "Nữ", txtSDT.getText(), txtNgayDK.getText(), txtNgayHH.getText());
-            list.add(sv);
-            dao.luuFile(list, true);
-            JOptionPane.showMessageDialog(this, "Sinh viên đã được lưu", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-            //loadDataToTable();
+            if (!dao.checkMaSV(txtMaSV.getText(), list)) {
+                JOptionPane.showMessageDialog(this, "Mã sinh viên đã tồn tại. Vui lòng nhập msv khác!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+
+            } else {
+                SinhVien sv = new SinhVien(txtMaSV.getText(), txtHoTen.getText(), txtMaPhong.getText(), txtQueQuan.getText(), btnNam.isSelected() ? "Nam" : "Nữ", txtSDT.getText(), txtNgayDK.getText(), txtNgayHH.getText());
+                list.add(sv);
+                dao.luuFile(list, true);
+                JOptionPane.showMessageDialog(this, "Sinh viên đã được lưu", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                //loadDataToTable();
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
 
         }
-        
+
         //NewPhongKTXPage p =new NewPhongKTXPage();
         //p.reload();
     }//GEN-LAST:event_btnLuuActionPerformed

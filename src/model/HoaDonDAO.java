@@ -100,4 +100,13 @@ public class HoaDonDAO {
     }
     return false;
     }
+    
+    public boolean checkMaHD(String mahd, List<HoaDon> list) {
+        for (HoaDon hd : list) {
+            if (hd.getMaHD().equals(mahd)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

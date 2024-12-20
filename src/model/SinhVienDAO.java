@@ -11,49 +11,51 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import model.SinhVien;
 
 public class SinhVienDAO {
 
     public int countSinhVienInPhongKTX(String maPhong) {
-    try {
-        SinhVienDAO dao = new SinhVienDAO();
-        List<SinhVien> list = dao.docFile(); // Đọc danh sách sinh viên từ file
-        
-        // Lọc các sinh viên có mã phòng khớp và đếm số lượng
-        int count = 0;
-        for (SinhVien sv : list) {
-            if (sv.getMaPhong().equalsIgnoreCase(maPhong)) {
-                count++;
-            }
-        }
-
-        return count;
-    } catch (Exception e) {
-        e.printStackTrace();
-        return 0; // Nếu có lỗi, trả về 0
-    }
-}
-    
-    public void laySVTheoMA(String maPhong,List<SinhVien> listSVMasv){
         try {
-        SinhVienDAO dao = new SinhVienDAO();
-        List<SinhVien> list = dao.docFile(); // Đọc danh sách sinh viên từ file
-        //List<SinhVien> listSVMasv = new ArrayList<>();
-        // Lọc các sinh viên có mã phòng khớp và đếm số lượng
-        int count = 0;
-        for (SinhVien sv : list) {
-            if (sv.getMaPhong().equalsIgnoreCase(maPhong)) {
-                listSVMasv.add(sv);
-            }
-        }
+            SinhVienDAO dao = new SinhVienDAO();
+            List<SinhVien> list = dao.docFile(); // Đọc danh sách sinh viên từ file
 
-        //return count;
-    } catch (Exception e) {
-        e.printStackTrace();
-        //e.printStackTrace(); // Nếu có lỗi, trả về 0
+            // Lọc các sinh viên có mã phòng khớp và đếm số lượng
+            int count = 0;
+            for (SinhVien sv : list) {
+                if (sv.getMaPhong().equalsIgnoreCase(maPhong)) {
+                    count++;
+                }
+            }
+
+            return count;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0; // Nếu có lỗi, trả về 0
+        }
     }
+
+    public void laySVTheoMA(String maPhong, List<SinhVien> listSVMasv) {
+        try {
+            SinhVienDAO dao = new SinhVienDAO();
+            List<SinhVien> list = dao.docFile(); // Đọc danh sách sinh viên từ file
+            //List<SinhVien> listSVMasv = new ArrayList<>();
+            // Lọc các sinh viên có mã phòng khớp và đếm số lượng
+            int count = 0;
+            for (SinhVien sv : list) {
+                if (sv.getMaPhong().equalsIgnoreCase(maPhong)) {
+                    listSVMasv.add(sv);
+                }
+            }
+
+            //return count;
+        } catch (Exception e) {
+            e.printStackTrace();
+            //e.printStackTrace(); // Nếu có lỗi, trả về 0
+        }
     }
+
     public void luuFile(List<SinhVien> list, boolean t) {
         //String txt1 = "SV4, Vũ Đình Duy, KTPM, 30/01/2003, Nam";
         try {
@@ -111,8 +113,8 @@ public class SinhVienDAO {
         }
 
     }
-    
-    public void xoaThanhVien(int i, List<SinhVien> dssv ) {
+
+    public void xoaThanhVien(int i, List<SinhVien> dssv) {
         dssv.remove(i);
 
     }
@@ -128,4 +130,15 @@ public class SinhVienDAO {
         }
         return null;
     }
+
+    public boolean checkMaSV(String masv, List<SinhVien> list) {
+        for (SinhVien sv1 : list) {
+            if (sv1.getMasv().trim().equalsIgnoreCase(masv.trim())) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
 }

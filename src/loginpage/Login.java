@@ -165,11 +165,14 @@ public class Login extends javax.swing.JFrame {
                     this.setVisible(false);
                     Home h = new Home();
                     h.setVisible(true);
+                    return;
                 }
             }
-            
+            JOptionPane.showMessageDialog(this, "Tên tài khoản hoặc mật khẩu không đúng!", "error", JOptionPane.ERROR_MESSAGE);
+
     }//GEN-LAST:event_btSigninActionPerformed
     }
+
     /**
      * @param args the command line arguments
      */

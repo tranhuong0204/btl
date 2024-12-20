@@ -19,12 +19,12 @@ import java.util.regex.Pattern;
 import model.SinhVienDAO;
 import model.SinhVien;
 import Utils.CheckDate;
+import model.NewPhongKTX;
+import model.PhongktxDAO;
 
-/**
- *
- * @author huong
- */
+
 public class QLSV extends javax.swing.JFrame {
+    private SinhVienDAO dao = new SinhVienDAO();
 
     private DefaultTableModel tblModel;
 
@@ -46,7 +46,6 @@ public class QLSV extends javax.swing.JFrame {
 
     public void loadDataToTable() {
         try {
-            SinhVienDAO dao = new SinhVienDAO();
             List<SinhVien> list = dao.docFile();
             tblModel.setRowCount(0);
             for (SinhVien sv : list) {
@@ -55,28 +54,12 @@ public class QLSV extends javax.swing.JFrame {
                 });
 
             }
-            SinhVien sv = new SinhVien();
             tblModel.fireTableDataChanged();
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, e.getMessage(), "lỗi", JOptionPane.ERROR_MESSAGE);
             //MessageDialog.showErrorMessage(this, e.getMessage(), "Lỗi");
 
-        }
-    }
-
-    public static boolean checkNgayThang(String target) {
-        String dateFormatRegex = "^\\d{2}/\\d{2}/\\d{4}$";
-        Pattern pattern = Pattern.compile(dateFormatRegex);
-        Matcher matcher = pattern.matcher(target.trim());
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        dateFormat.setLenient(false);
-        try {
-            dateFormat.parse(target);
-            return true && matcher.matches();
-        } catch (ParseException e) {
-            return false;
         }
     }
 
@@ -427,10 +410,9 @@ public class QLSV extends javax.swing.JFrame {
         DataValidator.validateEmpty(txtTim, sb, "Không được để trống. Vui lòng nhập mã sv");
         if (sb.length() > 0) {
             JOptionPane.showMessageDialog(this, sb.toString(), "Lỗi", JOptionPane.ERROR_MESSAGE);
-            return;
         }
+        
         try {
-            SinhVienDAO dao = new SinhVienDAO();
             List<SinhVien> list = dao.docFile();
             SinhVien tv = dao.getSVbyMaSV(txtTim.getText(), list);
             if (tv != null) {
@@ -448,9 +430,7 @@ public class QLSV extends javax.swing.JFrame {
                 else {
                     btnNu.setSelected(true);
                 }
-                //btnNam.setSelected(tv.getGioiTinh().equalsIgnoreCase("Nam") ? true : false);
 
-                //JOptionPane.showMessageDialog(this, sb.toString(), "Lỗi", JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "không tìm thấy", "Lỗi", JOptionPane.ERROR_MESSAGE);
             }
@@ -458,10 +438,6 @@ public class QLSV extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btTimActionPerformed
-
-    private void txtQueQuanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQueQuanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtQueQuanActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
@@ -476,7 +452,6 @@ public class QLSV extends javax.swing.JFrame {
             int row = tableSV.getSelectedRow();
             if (row >= 0) {
                 String id = (String) tableSV.getValueAt(row, 0);
-                SinhVienDAO dao = new SinhVienDAO();
                 List<SinhVien> list = dao.docFile();
                 SinhVien tv = dao.getSVbyMaSV(id, list);
                 if (tv != null) {
@@ -526,19 +501,34 @@ public class QLSV extends javax.swing.JFrame {
             txtNgayDK.setText("");
             txtNgayHH.setText("");
             return;
-        } 
+        }
         if (sb.length() > 0) {
             JOptionPane.showMessageDialog(this, "không để trống thông tin", "Lỗi", JOptionPane.ERROR_MESSAGE);
             return;
         } else {
             try {
-                SinhVienDAO dao = new SinhVienDAO();
+                List<SinhVien> listCheck = dao.docFile();
                 List<SinhVien> list = new ArrayList<>();
-                SinhVien sv = new SinhVien(txtMaSV.getText(), txtHoTen.getText(), txtMaPhong.getText(), txtQueQuan.getText(), btnNam.isSelected() ? "Nam" : "Nữ", txtSDT.getText(), txtNgayDK.getText(), txtNgayHH.getText());
-                list.add(sv);
-                dao.luuFile(list, true);
-                JOptionPane.showMessageDialog(this, "Sinh viên đã được lưu", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                loadDataToTable();
+                PhongktxDAO daoP = new PhongktxDAO();
+                NewPhongKTX p = new NewPhongKTX();
+                List<NewPhongKTX> listP = p.docPhongKTXFile("PhongKTX.txt");
+                //for()
+                if (dao.checkMaSV(txtMaSV.getText(), listCheck)) {
+                    JOptionPane.showMessageDialog(this, "Mã sinh viên đã tồn tại. Vui lòng nhập msv khác!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+
+                } else if (daoP.checkTinhTrang(txtMaPhong.getText(), listP)) {
+                    JOptionPane.showMessageDialog(this, "Phòng đã hết chỗ!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    SinhVien sv = new SinhVien(txtMaSV.getText(), txtHoTen.getText(), txtMaPhong.getText(), txtQueQuan.getText(), btnNam.isSelected() ? "Nam" : "Nữ", txtSDT.getText(), txtNgayDK.getText(), txtNgayHH.getText());
+                    list.add(sv);
+                    dao.luuFile(list, true);
+                    JOptionPane.showMessageDialog(this, "Sinh viên đã được lưu", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    //return;
+                    loadDataToTable();
+
+                }
+                //}
+                //loadDataToTable();
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -559,6 +549,17 @@ public class QLSV extends javax.swing.JFrame {
         DataValidator.validateEmpty(txtNgayDK, sb, "ngày đăng kí không được để trống");
         DataValidator.validateEmpty(txtNgayHH, sb, "ngày hết hạn không được để trống");
 
+        if (!CheckDate.checkDateFormat(txtNgayDK.getText()) || !CheckDate.checkDateFormat(txtNgayDK.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "nhập sai định dạng ngày tháng. Vui lòng nhập theo định dạng xx/yy/zzzz.");
+            txtNgayDK.setText("");
+            txtNgayHH.setText("");
+            return;
+        } else if (!CheckDate.isFuture(txtNgayDK.getText(), txtNgayHH.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "Lỗi ngày hết hạn trước ngày bắt đầu.");
+            txtNgayDK.setText("");
+            txtNgayHH.setText("");
+            return;
+        }
         if (sb.length() > 0) {
             JOptionPane.showMessageDialog(this, sb.toString(), "Lỗi", JOptionPane.ERROR_MESSAGE);
             return;
@@ -567,7 +568,6 @@ public class QLSV extends javax.swing.JFrame {
             return;
         }
         try {
-            SinhVienDAO dao = new SinhVienDAO();
             List<SinhVien> list = dao.docFile();
             SinhVien newSV = new SinhVien();
             newSV.setMasv(txtMaSV.getText());
@@ -624,10 +624,16 @@ public class QLSV extends javax.swing.JFrame {
             return;
         }
         try {
-            SinhVienDAO dao = new SinhVienDAO();
             List<SinhVien> list = dao.docFile();
 
             if (dao.xoaThanhVien(txtMaSV.getText(), list)) {
+                txtMaSV.setText("");
+                txtHoTen.setText("");
+                txtMaPhong.setText("");
+                txtQueQuan.setText("");
+                txtSDT.setText("");
+                txtNgayDK.setText("");
+                txtNgayHH.setText("");
                 JOptionPane.showMessageDialog(this, "Thành vien  đã được xóa", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "Sinh viên chưa được xóa", "Cảnh báo", JOptionPane.INFORMATION_MESSAGE);
@@ -644,6 +650,10 @@ public class QLSV extends javax.swing.JFrame {
     private void txtNgayHHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNgayHHActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNgayHHActionPerformed
+
+    private void txtQueQuanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQueQuanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtQueQuanActionPerformed
 
     /**
      * @param args the command line arguments
