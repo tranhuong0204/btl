@@ -286,7 +286,10 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_QLTKMouseClicked
 
     private void QLTKMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QLTKMousePressed
-        // TODO add your handling code here:
+        // TODO add your handling code here
+        QLTK tk = new QLTK();
+        this.setVisible(false);
+        tk.setVisible(true);
     }//GEN-LAST:event_QLTKMousePressed
 
     private void QLSVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QLSVMouseClicked

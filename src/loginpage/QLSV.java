@@ -620,8 +620,8 @@ public class QLSV extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, sb.toString(), "Lỗi", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa sinh viên không", "Hỏi", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
-            return;
+        if (JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa sinh viên không", "Hỏi", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION ) {
+            return ;
         }
         try {
             List<SinhVien> list = dao.docFile();
